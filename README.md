@@ -1,50 +1,58 @@
-# Welcome to your Expo app 👋
+# FinTech App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern financial technology application built with React Native and Expo.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Authentication**: Secure login, registration, and forgot password screens.
+- **Dashboard**: Overview of accounts, cards, and recent transactions.
+- **Navigation**: Drawer and Tab-based navigation for a seamless user experience.
+- **Onboarding**: Interactive onboarding screens for new users.
+- **Management**: Dedicated screens for expenses, savings, payments, and profile settings.
+- **Custom Components**: Includes a custom numpad, currency picker, and step indicators.
 
+## Tech Stack
+
+- **Framework**: [React Native](https://reactnative.dev/) with [Expo](https://expo.dev/)
+- **Routing**: [Expo Router](https://docs.expo.dev/router/introduction/) (file-based navigation)
+- **Styling**: [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
+- **Backend**: [Supabase](https://supabase.com/)
+- **Storage**: AsyncStorage for local data persistence
+
+## Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Syber-Tek/fintech_app.git
+   cd fintech_app
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory and add your Supabase credentials:
+   ```env
+   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+   EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
+4. **Start the application**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Folder Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- `app/`: Main application screens and routing logic.
+- `assets/`: Images, icons, and other static assets.
+- `components/`: Reusable UI components.
+- `hooks/`: Custom React hooks (e.g., `useCurrency`).
+- `lib/`: Library configurations (e.g., Supabase client).
+- `utils/`: Utility functions and helper classes.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## License
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This project is private and owned by Syber-Tek.
