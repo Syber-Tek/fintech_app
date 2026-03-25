@@ -108,7 +108,10 @@ const Register = () => {
   const handleSendEmailCode = () => {
     setIsEmailVerified(false);
     triggerSuccessHaptic();
-    Toast.show({ type: "success", text2: "Email code sent!" });
+    Toast.show({
+      type: "success", text2: "Email code sent!",
+      text1: ""
+    });
   };
 
   const handleFinalSubmit = async () => {
@@ -173,7 +176,7 @@ const Register = () => {
         type: "error",
         text1: "Invalid Number",
         text2: `Please enter a valid number for ${selectedCountry?.name?.en || "your country"}.`,
-        visibilityTime: 3000,
+    
       });
       return;
     }
@@ -732,7 +735,7 @@ const Register = () => {
           )}
         </ScrollView>
       </KeyboardAvoidingView>
-      <Toast />
+  
       <CurrencyPicker
         visible={showCurrencyPicker}
         onClose={() => setShowCurrencyPicker(false)}

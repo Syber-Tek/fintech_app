@@ -14,7 +14,6 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
-import { MotiView, AnimatePresence } from "moti";
 import {
   CheckCircle,
   XCircle,
@@ -74,8 +73,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 
   const hide = useCallback(() => {
     setVisible(false);
-    // Give time for the exit animation to complete before clearing toast data
-    setTimeout(() => setToast(null), 300);
+    setToast(null);
   }, []);
 
   const show = useCallback(
@@ -244,59 +242,51 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
           pointerEvents: "box-none",
         }}
       >
-        <AnimatePresence>
-          {visible && toast && (
-            <MotiView
-              from={{ opacity: 0, translateY: -50, scale: 0.9 }}
-              animate={{ opacity: 1, translateY: 0, scale: 1 }}
-              exit={{ opacity: 0, translateY: -50, scale: 0.9 }}
-              transition={{ type: "spring", damping: 15 }}
-              className="px-4 mt-2"
+        {visible && toast && (
+          <View className="px-4 mt-2">
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={hide}
+              className={`flex-row items-center p-4 rounded-xl ${getToastBgColor(toast.type)} ${getToastBorderColor(toast.type)}`}
+              style={{
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.05,
+                shadowRadius: 8,
+                elevation: 3,
+              }}
             >
-              <TouchableOpacity
-                activeOpacity={0.9}
-                onPress={hide}
-                className={`flex-row items-center p-4 rounded-xl ${getToastBgColor(toast.type)} ${getToastBorderColor(toast.type)}`}
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.05,
-                  shadowRadius: 8,
-                  elevation: 3,
-                }}
+              <View
+                className={`p-1 rounded-full mr-3 ${getIconBgColor(toast.type)}`}
               >
-                <View
-                  className={`p-1 rounded-full mr-3 ${getIconBgColor(toast.type)}`}
+                {getIcon(toast.type)}
+              </View>
+
+              <View className="flex-1">
+                <Text
+                  className={`font-semibold text-base ${getTextColor(toast.type)} leading-snug`}
                 >
-                  {getIcon(toast.type)}
-                </View>
-
-                <View className="flex-1">
+                  {toast.text1}
+                </Text>
+                {toast.text2 && (
                   <Text
-                    className={`font-semibold text-base ${getTextColor(toast.type)} leading-snug`}
+                    className={`text-sm mt-0.5 ${getSubTextColor(toast.type)} leading-snug`}
                   >
-                    {toast.text1}
+                    {toast.text2}
                   </Text>
-                  {toast.text2 && (
-                    <Text
-                      className={`text-sm mt-0.5 ${getSubTextColor(toast.type)} leading-snug`}
-                    >
-                      {toast.text2}
-                    </Text>
-                  )}
-                </View>
+                )}
+              </View>
 
-                <TouchableOpacity onPress={hide} className="ml-2 p-1">
-                  <X
-                    size={20}
-                    color={getSubTextColor(toast.type).replace("text-", "")}
-                    weight="bold"
-                  />
-                </TouchableOpacity>
+              <TouchableOpacity onPress={hide} className="ml-2 p-1">
+                <X
+                  size={20}
+                  color={getSubTextColor(toast.type).replace("text-", "")}
+                  weight="bold"
+                />
               </TouchableOpacity>
-            </MotiView>
-          )}
-        </AnimatePresence>
+            </TouchableOpacity>
+          </View>
+        )}
       </SafeAreaView>
     </ToastContext.Provider>
   );
